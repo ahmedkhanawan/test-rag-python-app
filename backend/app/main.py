@@ -2,7 +2,7 @@ import logging
 
 from fastapi import FastAPI
 
-from app.api import health
+from app.api import chat, health
 from app.core.config import get_settings
 from app.core.logging import configure_logging
 
@@ -14,6 +14,7 @@ def create_app() -> FastAPI:
     configure_logging(settings.log_level)
     app = FastAPI(title=settings.app_name)
     app.include_router(health.router, prefix="/api")
+    app.include_router(chat.router, prefix="/api")
     logger.info("Application created (environment=%s)", settings.environment)
     return app
 
