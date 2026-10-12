@@ -16,6 +16,7 @@ class Settings(BaseSettings):
 
     openai_api_key: str | None = None
     openai_embedding_model: str = "text-embedding-3-small"
+    openai_chat_model: str = "gpt-5.4-mini"
 
     qdrant_url: str = "http://localhost:6333"
     qdrant_collection: str = "company_documents"
