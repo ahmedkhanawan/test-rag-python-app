@@ -9,7 +9,8 @@ export default function App() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="chat" element={<ChatPage />} />
+        {/* One route (optional param) so ChatPage is not remounted after the first answer */}
+        <Route path="chat/:conversationId?" element={<ChatPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
