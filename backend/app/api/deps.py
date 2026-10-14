@@ -31,6 +31,16 @@ def get_answerer() -> Answerer:
     return answer
 
 
+def get_embedder() -> EmbeddingService:
+    """FastAPI dependency (overridden with fakes in tests)."""
+    return _services()[0]
+
+
+def get_vector_store() -> VectorStore:
+    """FastAPI dependency (overridden with fakes in tests)."""
+    return _services()[1]
+
+
 _bearer = HTTPBearer(auto_error=False)
 
 

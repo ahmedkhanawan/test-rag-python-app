@@ -1,4 +1,5 @@
 import logging
+import uuid
 from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Any
@@ -92,6 +93,24 @@ class VectorStore:
             self._client.upsert(self.collection, points=points)
         except Exception as exc:
             raise VectorStoreError(f"Qdrant upsert failed: {exc}") from exc
+
+    def delete_document(self, document_id: str | uuid.UUID) -> None:
+        """Remove every point of a document. Idempotent; a missing collection is a no-op."""
+        selector = models.FilterSelector(
+            filter=models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="document_id", match=models.MatchValue(value=str(document_id))
+                    )
+                ]
+            )
+        )
+        try:
+            if not self._client.collection_exists(self.collection):
+                return
+            self._client.delete(self.collection, points_selector=selector)
+        except Exception as exc:
+            raise VectorStoreError(f"Qdrant delete failed: {exc}") from exc
 
     def search(
         self, vector: Sequence[float], top_k: int, score_threshold: float | None = None

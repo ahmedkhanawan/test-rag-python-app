@@ -8,3 +8,13 @@ export function describeChatError(error) {
   if (typeof detail === 'string') return detail
   return 'Something went wrong. Please try again.'
 }
+
+/** Turn an Axios error from an admin endpoint into a user-facing message. */
+export function describeAdminError(error, fallback = 'Something went wrong. Please try again.') {
+  if (!error?.response) return 'Cannot reach the backend. Check that the API is running.'
+  const detail = error.response.data?.detail
+  // FastAPI validation errors (422) send a list; our own errors send a string.
+  if (typeof detail === 'string') return detail
+  if (error.response.status === 422) return 'The request was not valid.'
+  return fallback
+}

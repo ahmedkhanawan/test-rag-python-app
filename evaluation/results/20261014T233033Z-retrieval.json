@@ -1,0 +1,2477 @@
+{
+  "id": "20261014T233033Z-retrieval",
+  "started_at": "2026-10-14T23:30:33.674899+00:00",
+  "mode": "retrieval",
+  "aborted": false,
+  "dataset": {
+    "version": 1,
+    "questions": 30,
+    "evaluated": 30
+  },
+  "config": {
+    "embedding_model": "text-embedding-3-small",
+    "chat_model": null,
+    "k": 5,
+    "score_threshold": null,
+    "chunk_size": 1000,
+    "chunk_overlap": 150
+  },
+  "usage": {
+    "embedding_requests": 30,
+    "embedding_tokens": 425,
+    "chat_requests": 0,
+    "chat_prompt_tokens": 0,
+    "chat_completion_tokens": 0
+  },
+  "aggregate": {
+    "questions": 30,
+    "answerable": 24,
+    "unsupported": 6,
+    "errors": 0,
+    "retrieval": {
+      "k": 5,
+      "recall_at_k": 1.0,
+      "hit_rate_at_k": 1.0,
+      "mrr": 0.9513888888888888,
+      "mean_top_score_answerable": 0.6033612479166667,
+      "mean_top_score_unsupported": 0.38805663166666665
+    },
+    "mean_latency_ms": 349.6666666666667,
+    "by_category": {
+      "direct": {
+        "questions": 9,
+        "evaluated": 9,
+        "passed": 9
+      },
+      "multi_part": {
+        "questions": 7,
+        "evaluated": 7,
+        "passed": 7
+      },
+      "paraphrase": {
+        "questions": 8,
+        "evaluated": 8,
+        "passed": 8
+      },
+      "unsupported": {
+        "questions": 6,
+        "evaluated": 0,
+        "passed": 0
+      }
+    },
+    "evaluated": 24,
+    "passed": 24
+  },
+  "results": [
+    {
+      "id": "q01",
+      "category": "direct",
+      "question": "How many paid annual-leave days do full-time employees receive per calendar year?",
+      "answerable": true,
+      "expected_answer": "20 paid annual-leave days per calendar year.",
+      "latency_ms": 606,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6107518,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": true,
+            "facts": [
+              "leave_days"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.52633333,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "leave_days"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.43189108,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.35483718,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.33904216,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6107518,
+        "facts_found": [
+          "leave_days"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q02",
+      "category": "direct",
+      "question": "What is the core availability window for employees?",
+      "answerable": true,
+      "expected_answer": "10:00 a.m. to 3:00 p.m. local time.",
+      "latency_ms": 351,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.53515947,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": true,
+            "facts": [
+              "core_hours"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.4773597,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.44119513,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.437404,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.41323858,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.53515947,
+        "facts_found": [
+          "core_hours"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q03",
+      "category": "direct",
+      "question": "Within what time must a lost or stolen company laptop be reported to the IT team?",
+      "answerable": true,
+      "expected_answer": "Within one hour of discovering the loss.",
+      "latency_ms": 291,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.75030863,
+            "chunk_id": "56f83d52-3cc1-485f-979a-16fa669246f8",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 6,
+            "text": "the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the device may contain locally stored company information.",
+            "relevant": true,
+            "facts": [
+              "lost_report_time"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.51460016,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": true,
+            "facts": [
+              "lost_report_time"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.44072497,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.39818126,
+            "chunk_id": "0affa42b-ce7a-47b1-a841-6b4ca91ea437",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 7,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 3 Passwords and Device Protection Company accounts must use unique passwords and multi-factor authentication wherever it is available. Employees must lock their screens when leaving a device unattended and must not share passwords or authentication codes with colleagues, contractors, or support personnel. Data Handling and Public Networks Confidential company files may be stored only in company-approved systems, not in personal email or unapproved consumer cloud drives. When using public Wi-Fi, employees must connect through the company VPN before accessing internal resources and must report suspected data exposure to Security promptly. 6. Meetings and Communication Policy Meeting Invitations and Preparation Meeting organizers should include a clear purpose, agenda, and relevant documents in the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.38432768,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.75030863,
+        "facts_found": [
+          "lost_report_time"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q04",
+      "category": "direct",
+      "question": "What is the largest single expense claim a manager can approve?",
+      "answerable": true,
+      "expected_answer": "Up to $250.",
+      "latency_ms": 279,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.581557,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": true,
+            "facts": [
+              "manager_limit"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.5186078,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.50562894,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.47729987,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": true,
+            "facts": [
+              "manager_limit"
+            ]
+          },
+          {
+            "rank": 5,
+            "score": 0.36028236,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.581557,
+        "facts_found": [
+          "manager_limit"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q05",
+      "category": "direct",
+      "question": "How much can an employee request for learning each calendar year?",
+      "answerable": true,
+      "expected_answer": "Up to $600 per calendar year.",
+      "latency_ms": 294,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.60622597,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": true,
+            "facts": [
+              "learning_budget"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.5211972,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": true,
+            "facts": [
+              "learning_budget"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.48095256,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.4454943,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.40814668,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.60622597,
+        "facts_found": [
+          "learning_budget"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q06",
+      "category": "direct",
+      "question": "What meal allowance can be claimed per travel day on an approved domestic overnight business trip?",
+      "answerable": true,
+      "expected_answer": "Up to $55 per travel day without itemized meal receipts.",
+      "latency_ms": 399,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.7053501,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": true,
+            "facts": [
+              "meal_allowance"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.41186947,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.37639546,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3692677,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.35466373,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.7053501,
+        "facts_found": [
+          "meal_allowance"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q07",
+      "category": "direct",
+      "question": "How long is the normal probation period for new employees?",
+      "answerable": true,
+      "expected_answer": "Three months.",
+      "latency_ms": 691,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.58391154,
+            "chunk_id": "52bb9b63-5cb6-460f-8e54-a8c608d341fc",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 11,
+            "text": "should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New employees normally have a three-month probation period, during which their manager should provide feedback at least once each month. Any extension must be documented by HR before the original probation end date. Internal Applications Employees who have completed six months in their current role may apply for internal vacancies with their manager's awareness. Exceptions for urgent business needs may be approved by HR, and applying internally does not guarantee an interview or transfer. Referral and Conflict Disclosure Employees referring a candidate must disclose any close personal relationship to the hiring manager before interviews begin. Referral rewards, when offered, are governed by the separate recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must",
+            "relevant": true,
+            "facts": [
+              "probation"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.33581764,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.3181015,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3047241,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.290331,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.58391154,
+        "facts_found": [
+          "probation"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q08",
+      "category": "direct",
+      "question": "How many calendar days do employees have to submit an expense claim with an itemized receipt?",
+      "answerable": true,
+      "expected_answer": "30 calendar days from the purchase.",
+      "latency_ms": 281,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.52708435,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.48596668,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": true,
+            "facts": [
+              "expense_deadline"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.45701802,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.4137274,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.4127736,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.52708435,
+        "facts_found": [
+          "expense_deadline"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q09",
+      "category": "direct",
+      "question": "What encryption must company laptops use?",
+      "answerable": true,
+      "expected_answer": "Full-disk encryption.",
+      "latency_ms": 271,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.54529214,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "encryption"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.46925253,
+            "chunk_id": "0affa42b-ce7a-47b1-a841-6b4ca91ea437",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 7,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 3 Passwords and Device Protection Company accounts must use unique passwords and multi-factor authentication wherever it is available. Employees must lock their screens when leaving a device unattended and must not share passwords or authentication codes with colleagues, contractors, or support personnel. Data Handling and Public Networks Confidential company files may be stored only in company-approved systems, not in personal email or unapproved consumer cloud drives. When using public Wi-Fi, employees must connect through the company VPN before accessing internal resources and must report suspected data exposure to Security promptly. 6. Meetings and Communication Policy Meeting Invitations and Preparation Meeting organizers should include a clear purpose, agenda, and relevant documents in the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.3114279,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.29465133,
+            "chunk_id": "56f83d52-3cc1-485f-979a-16fa669246f8",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 6,
+            "text": "the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the device may contain locally stored company information.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.22196713,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.54529214,
+        "facts_found": [
+          "encryption"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q10",
+      "category": "paraphrase",
+      "question": "How many vacation days do I get each year?",
+      "answerable": true,
+      "expected_answer": "20 paid annual-leave days per calendar year.",
+      "latency_ms": 300,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.50594616,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": true,
+            "facts": [
+              "leave_days"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.44626823,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "leave_days"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.35570633,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3168614,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.27833927,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.50594616,
+        "facts_found": [
+          "leave_days"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q11",
+      "category": "paraphrase",
+      "question": "How many days per week am I allowed to work from home?",
+      "answerable": true,
+      "expected_answer": "Up to three days per week (manager approval required).",
+      "latency_ms": 298,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.64592206,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": true,
+            "facts": [
+              "remote_days"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.58166575,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "remote_days"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.52890825,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.37216657,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.36800337,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.64592206,
+        "facts_found": [
+          "remote_days"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q12",
+      "category": "paraphrase",
+      "question": "If my work laptop gets stolen, how quickly do I have to tell IT?",
+      "answerable": true,
+      "expected_answer": "Within one hour of discovering the loss.",
+      "latency_ms": 380,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6303539,
+            "chunk_id": "56f83d52-3cc1-485f-979a-16fa669246f8",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 6,
+            "text": "the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the device may contain locally stored company information.",
+            "relevant": true,
+            "facts": [
+              "lost_report_time"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.44239575,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.4234591,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": true,
+            "facts": [
+              "lost_report_time"
+            ]
+          },
+          {
+            "rank": 4,
+            "score": 0.36721328,
+            "chunk_id": "0affa42b-ce7a-47b1-a841-6b4ca91ea437",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 7,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 3 Passwords and Device Protection Company accounts must use unique passwords and multi-factor authentication wherever it is available. Employees must lock their screens when leaving a device unattended and must not share passwords or authentication codes with colleagues, contractors, or support personnel. Data Handling and Public Networks Confidential company files may be stored only in company-approved systems, not in personal email or unapproved consumer cloud drives. When using public Wi-Fi, employees must connect through the company VPN before accessing internal resources and must report suspected data exposure to Security promptly. 6. Meetings and Communication Policy Meeting Invitations and Preparation Meeting organizers should include a clear purpose, agenda, and relevant documents in the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.3551464,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6303539,
+        "facts_found": [
+          "lost_report_time"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q13",
+      "category": "paraphrase",
+      "question": "What hourly rate am I paid for approved remote assignments?",
+      "answerable": true,
+      "expected_answer": "$20 per hour, for up to five hours per day.",
+      "latency_ms": 302,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.5528332,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": true,
+            "facts": [
+              "remote_rate"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.4069194,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.4000599,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.37953645,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.33361402,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.5528332,
+        "facts_found": [
+          "remote_rate"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q14",
+      "category": "paraphrase",
+      "question": "How soon should I reply to internal messages that need action?",
+      "answerable": true,
+      "expected_answer": "Within four working hours.",
+      "latency_ms": 332,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.4986985,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": true,
+            "facts": [
+              "message_reply"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.39067554,
+            "chunk_id": "52bb9b63-5cb6-460f-8e54-a8c608d341fc",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 11,
+            "text": "should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New employees normally have a three-month probation period, during which their manager should provide feedback at least once each month. Any extension must be documented by HR before the original probation end date. Internal Applications Employees who have completed six months in their current role may apply for internal vacancies with their manager's awareness. Exceptions for urgent business needs may be approved by HR, and applying internally does not guarantee an interview or transfer. Referral and Conflict Disclosure Employees referring a candidate must disclose any close personal relationship to the hiring manager before interviews begin. Referral rewards, when offered, are governed by the separate recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.32376146,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.32225147,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.3159436,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.4986985,
+        "facts_found": [
+          "message_reply"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q15",
+      "category": "paraphrase",
+      "question": "Which hours must I be reachable no matter what schedule my team uses?",
+      "answerable": true,
+      "expected_answer": "The core window, 10:00 a.m. to 3:00 p.m.",
+      "latency_ms": 550,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.54453605,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.47502956,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.46489602,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": true,
+            "facts": [
+              "core_hours"
+            ]
+          },
+          {
+            "rank": 4,
+            "score": 0.41113,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.38381094,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.54453605,
+        "facts_found": [
+          "core_hours"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 3,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q16",
+      "category": "paraphrase",
+      "question": "What is the cap on leave days I can carry over into next year?",
+      "answerable": true,
+      "expected_answer": "A maximum of five unused annual-leave days.",
+      "latency_ms": 293,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.5598094,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": true,
+            "facts": [
+              "carryover_cap"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.4433199,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.34383428,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.34250164,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.33873135,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.5598094,
+        "facts_found": [
+          "carryover_cap"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q17",
+      "category": "paraphrase",
+      "question": "Do I need my manager's approval before spending my learning funds on a course?",
+      "answerable": true,
+      "expected_answer": "Yes; the manager must approve the expense before purchase.",
+      "latency_ms": 282,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.64731723,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": true,
+            "facts": [
+              "learning_approval"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.46974236,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.41329375,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.38734058,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.35900086,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.64731723,
+        "facts_found": [
+          "learning_approval"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q18",
+      "category": "multi_part",
+      "question": "How many annual-leave days can be carried over, and by what date must they be used?",
+      "answerable": true,
+      "expected_answer": "A maximum of five days; they must be used by March 31.",
+      "latency_ms": 269,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.5936376,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": true,
+            "facts": [
+              "carryover_cap",
+              "carryover_deadline"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.47420913,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.37374115,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.340419,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.33231264,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.5936376,
+        "facts_found": [
+          "carryover_cap",
+          "carryover_deadline"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q19",
+      "category": "multi_part",
+      "question": "How many days per week can I work remotely, and by when must my manager approve the chosen days?",
+      "answerable": true,
+      "expected_answer": "Up to three days per week; approval by the preceding Friday.",
+      "latency_ms": 342,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6913375,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": true,
+            "facts": [
+              "remote_days",
+              "remote_approval_deadline"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.6284413,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "remote_days"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.60839593,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.48592275,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.4709798,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6913375,
+        "facts_found": [
+          "remote_approval_deadline",
+          "remote_days"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q20",
+      "category": "multi_part",
+      "question": "What is a manager's approval limit for a single expense claim, and how long does Finance take to process approved claims?",
+      "answerable": true,
+      "expected_answer": "Up to $250; within ten business days after approval.",
+      "latency_ms": 633,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6425216,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": true,
+            "facts": [
+              "manager_limit",
+              "finance_processing"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.4646092,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.45277715,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": true,
+            "facts": [
+              "manager_limit"
+            ]
+          },
+          {
+            "rank": 4,
+            "score": 0.442766,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.37235254,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6425216,
+        "facts_found": [
+          "finance_processing",
+          "manager_limit"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q21",
+      "category": "multi_part",
+      "question": "What are the core working hours, and how late can I be for an onsite commitment before I must notify my manager?",
+      "answerable": true,
+      "expected_answer": "10:00 a.m. to 3:00 p.m.; notify if more than 15 minutes late.",
+      "latency_ms": 289,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6303277,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": true,
+            "facts": [
+              "lateness_notice"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.54071033,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": true,
+            "facts": [
+              "core_hours"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.4995336,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.43522057,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.42803,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6303277,
+        "facts_found": [
+          "core_hours",
+          "lateness_notice"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q22",
+      "category": "multi_part",
+      "question": "Who must be told about a lost company phone, how quickly, and what should the report include?",
+      "answerable": true,
+      "expected_answer": "The IT team, within one hour; device type, approximate time and place of loss, and whether it may contain stored company information.",
+      "latency_ms": 301,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.68411195,
+            "chunk_id": "56f83d52-3cc1-485f-979a-16fa669246f8",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 6,
+            "text": "the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the device may contain locally stored company information.",
+            "relevant": true,
+            "facts": [
+              "lost_report_time",
+              "lost_report_contents"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.4075722,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": true,
+            "facts": [
+              "lost_report_time",
+              "lost_report_contents"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.37936884,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.36553818,
+            "chunk_id": "0affa42b-ce7a-47b1-a841-6b4ca91ea437",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 7,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 3 Passwords and Device Protection Company accounts must use unique passwords and multi-factor authentication wherever it is available. Employees must lock their screens when leaving a device unattended and must not share passwords or authentication codes with colleagues, contractors, or support personnel. Data Handling and Public Networks Confidential company files may be stored only in company-approved systems, not in personal email or unapproved consumer cloud drives. When using public Wi-Fi, employees must connect through the company VPN before accessing internal resources and must report suspected data exposure to Security promptly. 6. Meetings and Communication Policy Meeting Invitations and Preparation Meeting organizers should include a clear purpose, agenda, and relevant documents in the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.33629578,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.68411195,
+        "facts_found": [
+          "lost_report_contents",
+          "lost_report_time"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q23",
+      "category": "multi_part",
+      "question": "How long is probation, and how often should the manager give feedback during it?",
+      "answerable": true,
+      "expected_answer": "Three months; feedback at least once each month.",
+      "latency_ms": 367,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.5344997,
+            "chunk_id": "52bb9b63-5cb6-460f-8e54-a8c608d341fc",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 11,
+            "text": "should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New employees normally have a three-month probation period, during which their manager should provide feedback at least once each month. Any extension must be documented by HR before the original probation end date. Internal Applications Employees who have completed six months in their current role may apply for internal vacancies with their manager's awareness. Exceptions for urgent business needs may be approved by HR, and applying internally does not guarantee an interview or transfer. Referral and Conflict Disclosure Employees referring a candidate must disclose any close personal relationship to the hiring manager before interviews begin. Referral rewards, when offered, are governed by the separate recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must",
+            "relevant": true,
+            "facts": [
+              "probation",
+              "probation_feedback"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.3545691,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.33589494,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3268423,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.3143478,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.5344997,
+        "facts_found": [
+          "probation",
+          "probation_feedback"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q24",
+      "category": "multi_part",
+      "question": "How many annual-leave days do employees receive and how many days a week may they work from home?",
+      "answerable": true,
+      "expected_answer": "20 annual-leave days per year; up to three remote days per week.",
+      "latency_ms": 342,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.6731764,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": true,
+            "facts": [
+              "leave_days",
+              "remote_days"
+            ]
+          },
+          {
+            "rank": 2,
+            "score": 0.67115444,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": true,
+            "facts": [
+              "leave_days"
+            ]
+          },
+          {
+            "rank": 3,
+            "score": 0.5976969,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": true,
+            "facts": [
+              "remote_days"
+            ]
+          },
+          {
+            "rank": 4,
+            "score": 0.43674415,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.42804736,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.6731764,
+        "facts_found": [
+          "leave_days",
+          "remote_days"
+        ],
+        "facts_missing": [],
+        "recall": 1.0,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": true
+    },
+    {
+      "id": "q25",
+      "category": "unsupported",
+      "question": "How many sick days do employees get per year?",
+      "answerable": false,
+      "expected_answer": "Not in the documents (only a note about documentation after more than three consecutive absent days).",
+      "latency_ms": 317,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.500142,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.4728847,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.38982916,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.37267232,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.31159145,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.500142
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    },
+    {
+      "id": "q26",
+      "category": "unsupported",
+      "question": "What is the company's parental leave policy?",
+      "answerable": false,
+      "expected_answer": "Not in the documents.",
+      "latency_ms": 271,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.47523895,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.46580067,
+            "chunk_id": "cf4dc89e-5be1-4083-a460-9c2ced388b03",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 2,
+            "text": "work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by the department director. 2. Annual Leave and Absence Policy Annual Allowance and Requests Full-time employees receive 20 paid annual-leave days per calendar year. Requests should be submitted in the HR portal at least five working days before the first day of leave, and approval depends on staffing needs and the employee's remaining balance. Carryover and Extended Leave A maximum of five unused annual-leave days may be carried into the next calendar year, and those carried days must be used by March 31. A continuous absence longer than ten working days requires department-director approval, even when the employee has enough leave balance.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.4101919,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3893262,
+            "chunk_id": "52bb9b63-5cb6-460f-8e54-a8c608d341fc",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 11,
+            "text": "should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New employees normally have a three-month probation period, during which their manager should provide feedback at least once each month. Any extension must be documented by HR before the original probation end date. Internal Applications Employees who have completed six months in their current role may apply for internal vacancies with their manager's awareness. Exceptions for urgent business needs may be approved by HR, and applying internally does not guarantee an interview or transfer. Referral and Conflict Disclosure Employees referring a candidate must disclose any close personal relationship to the hiring manager before interviews begin. Referral rewards, when offered, are governed by the separate recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.35330752,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.47523895
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    },
+    {
+      "id": "q27",
+      "category": "unsupported",
+      "question": "What health insurance coverage does the company provide?",
+      "answerable": false,
+      "expected_answer": "Not in the documents.",
+      "latency_ms": 333,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.34636205,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.34294412,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.30489662,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.2995031,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.2928332,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.34636205
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    },
+    {
+      "id": "q28",
+      "category": "unsupported",
+      "question": "Is there a stipend for home office furniture?",
+      "answerable": false,
+      "expected_answer": "Not in the documents (only an hourly remote-work allowance exists).",
+      "latency_ms": 289,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.38140723,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.37915248,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.37701905,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.3634685,
+            "chunk_id": "bda3b884-6ff2-4312-b325-261a91ba5c56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 3,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 2 Unexpected Absence and Documentation Employees who cannot work because of an unexpected illness or emergency must notify their manager before their scheduled start time whenever practical. If the absence lasts more than three consecutive working days, HR may request appropriate supporting documentation; this requirement does not reduce the employee's annual-leave balance automatically. 3. Expense Reimbursement Policy Eligible Expenses and Submission Deadline Reasonable business expenses approved for a company purpose may be reimbursed when the employee submits an expense claim and itemized receipt within 30 calendar days of the purchase. Personal purchases, fines, and expenses without a business purpose are not eligible, even if a receipt is available. Approval Limits and High-Value Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.34000164,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.38140723
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    },
+    {
+      "id": "q29",
+      "category": "unsupported",
+      "question": "What is the office dress code?",
+      "answerable": false,
+      "expected_answer": "Not in the documents.",
+      "latency_ms": 260,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.3006161,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.2992502,
+            "chunk_id": "d6ace131-e8e7-4967-bebd-f405d62b2a56",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 4,
+            "text": "Purchases A manager may approve a single expense claim up to $250. Any individual purchase above $250 requires written approval from the department director before the purchase is made; splitting one purchase into multiple claims does not avoid this rule. Payment Timing and Currency Finance normally processes complete, approved claims within ten business days after approval. Claims made in another currency must include the original receipt and the exchange rate or card statement showing the amount charged; reimbursement is paid in the employee's payroll currency. 4. Core Working Hours and Attendance Policy Core Availability Window Employees must be available online or onsite from 10:00 a.m. to 3:00 p.m. in their assigned office's local time on working days. This core window applies to remote and onsite employees, although teams may agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.29915315,
+            "chunk_id": "c801106a-f23f-4960-8228-9afe53c3a159",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 10,
+            "text": "Northstar Labs — Fictional Policy Handbook Page 4 8. Health, Safety, and Workplace Facilities Policy Incident Reporting Workplace injuries, unsafe conditions, and near misses must be reported to Facilities or a manager as soon as possible, preferably on the same working day. Reports should describe what happened and where; employees should not delay urgent medical assistance while completing a report. Office Access and Visitors Visitors must be registered at reception and accompanied by an employee while in non-public work areas. Employees must not lend their access cards to visitors or allow unknown individuals to follow them through secured doors. Emergency Procedures During an evacuation, employees must use the nearest safe exit and gather at the designated assembly point. Elevators must not be used during a fire alarm, and employees should follow instructions from trained wardens or emergency responders. 9. Hiring, Probation, and Internal Mobility Policy Probation Period New",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.296191,
+            "chunk_id": "892b256c-9cc0-4eb5-9900-067cffd892b0",
+            "document_name": "sample_company_policy",
+            "page_number": 2,
+            "chunk_index": 5,
+            "text": "agree on different start and finish times outside the core window. Breaks, Meetings, and Time Records Employees should schedule a meal break outside mandatory meetings and record their actual working hours in the time-tracking system each workday. A calendar entry alone does not replace a required time record, and managers may ask employees to correct missing or inaccurate entries. Lateness and Flexible Arrangements Employees expecting to arrive more than 15 minutes late for an onsite commitment must notify their manager as soon as possible. A recurring change to normal hours requires manager approval; a one-time adjustment may be agreed directly with the manager if team coverage is maintained. 5. Company Equipment and Information Security Policy Lost or Stolen Equipment An employee must report a lost or stolen company laptop or phone to the IT team within one hour of discovering the loss. The report should include the device type, approximate time and place of loss, and whether the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.29432756,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.3006161
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    },
+    {
+      "id": "q30",
+      "category": "unsupported",
+      "question": "How much is the annual performance bonus?",
+      "answerable": false,
+      "expected_answer": "Not in the documents.",
+      "latency_ms": 277,
+      "retrieval": {
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.32457346,
+            "chunk_id": "ad6d5829-5c25-43aa-a10c-345092f91641",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 9,
+            "text": "employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the expense before purchase, and unused budget does not roll over to the next year. Course Attendance and Completion Employees receiving funding for a course should make a reasonable effort to complete it and share a brief summary of relevant learning with their team. If an employee leaves a course unfinished, the manager may ask for an explanation before approving another funded course. Certification and Reimbursement Evidence Certification-exam reimbursement requires proof of payment and an exam result or attendance record. A failed exam may still qualify for reimbursement if the manager approved the exam in advance, but retake fees require separate approval.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 2,
+            "score": 0.31348622,
+            "chunk_id": "82bf6958-f2f1-4f0e-b1b4-1ba15b98757a",
+            "document_name": "sample_company_policy",
+            "page_number": 4,
+            "chunk_index": 12,
+            "text": "recruitment announcement and are not guaranteed by this handbook. 10. Travel and Business Trip Policy Booking and Approval Business travel must be approved by the employee's manager before tickets or accommodation are booked. Employees should use the company's preferred booking channel when available and choose reasonably priced options consistent with the trip's business purpose. Daily Meal Allowance For approved domestic business trips requiring an overnight stay, employees may claim a meal allowance of up to $55 per travel day without itemized meal receipts. Alcohol, guest meals, and expenses already paid by a conference or host are not covered by this allowance. Trip Changes and Supporting Records Employees must notify their manager promptly when a delay or cancellation materially changes the trip plan. Claims for transport, lodging, and other reimbursable travel costs must include receipts and be submitted within 30 calendar days after the trip ends.",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 3,
+            "score": 0.29711598,
+            "chunk_id": "535ecc2a-63a0-485e-af9f-be813ee6a5e0",
+            "document_name": "sample_company_policy",
+            "page_number": 1,
+            "chunk_index": 1,
+            "text": "full-time employees may work remotely from home up to three days per Monday-to-Friday workweek. Their manager must approve the chosen days by the preceding Friday, and employees must work onsite on any day designated for an in-person team event. Remote Work Pay and Daily Limit For approved remote assignments covered by this handbook, the remote-work allowance is $20 per hour for up to five hours per day. This allowance is separate from base salary and is not automatic: employees must record the approved hours in the time-tracking system, and hours beyond the five-hour daily limit require written approval from Human Resources. Equipment, Availability, and Exceptions Remote employees must use an approved, password-protected device and remain reachable during their team's agreed core hours. The three-day weekly limit still applies when employees work from another location; working from a café or while travelling counts as a remote day. Temporary exceptions may be approved in writing by",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 4,
+            "score": 0.28873125,
+            "chunk_id": "9108ee71-047b-4de7-813c-63c81c0937f5",
+            "document_name": "sample_company_policy",
+            "page_number": 3,
+            "chunk_index": 8,
+            "text": "the invitation when practical. Invitees should accept or decline promptly, and anyone unable to attend should provide updates or nominate a suitable colleague when their input is required. Response Expectations During a normal workday, employees should acknowledge internal messages requiring action within four working hours. Messages marked urgent should be acknowledged as soon as reasonably possible, but the urgent label does not replace direct contact for a time-critical incident. Recording and External Sharing Meetings may be recorded only after participants are informed and the organizer has confirmed that recording is permitted. External sharing of meeting notes or recordings containing confidential information requires approval from the document owner. 7. Learning and Professional Development Policy Annual Learning Budget Each full-time employee may request up to $600 per calendar year for approved role-related courses, books, or certification exams. The manager must approve the",
+            "relevant": false,
+            "facts": []
+          },
+          {
+            "rank": 5,
+            "score": 0.2802984,
+            "chunk_id": "40e456dd-5351-4d6c-926c-917d7e4724d7",
+            "document_name": "Company Policy (smoke test)",
+            "page_number": 1,
+            "chunk_index": 0,
+            "text": "Remote employees may work from home up to three days per week with manager approval. Employees receive 20 days of annual leave per year. Company laptops must use full-disk encryption.",
+            "relevant": false,
+            "facts": []
+          }
+        ],
+        "top_score": 0.32457346
+      },
+      "failures": [],
+      "failure_stage": null,
+      "passed": null
+    }
+  ]
+}

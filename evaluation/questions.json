@@ -1,0 +1,808 @@
+{
+  "version": 1,
+  "description": "Evaluation questions for the Company Knowledge Assistant. Labels were written by reading the indexed chunk text. A retrieved chunk is relevant to a fact when it comes from the named document and contains the phrase (case/whitespace-insensitive). `answer_checks` are groups of alternative substrings; every group must match the answer.",
+  "documents": [
+    "sample_company_policy",
+    "Company Policy (smoke test)"
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "category": "direct",
+      "question": "How many paid annual-leave days do full-time employees receive per calendar year?",
+      "expected_answer": "20 paid annual-leave days per calendar year.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "leave_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "20 paid annual-leave days"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "20 days of annual leave"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "20",
+          "twenty"
+        ]
+      ]
+    },
+    {
+      "id": "q02",
+      "category": "direct",
+      "question": "What is the core availability window for employees?",
+      "expected_answer": "10:00 a.m. to 3:00 p.m. local time.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "core_hours",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "from 10:00 a.m. to 3:00 p.m."
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "10:00",
+          "10 a.m.",
+          "10am"
+        ],
+        [
+          "3:00",
+          "3 p.m.",
+          "15:00",
+          "3pm"
+        ]
+      ]
+    },
+    {
+      "id": "q03",
+      "category": "direct",
+      "question": "Within what time must a lost or stolen company laptop be reported to the IT team?",
+      "expected_answer": "Within one hour of discovering the loss.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "lost_report_time",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within one hour of discovering the loss"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "one hour",
+          "1 hour",
+          "an hour",
+          "60 minutes"
+        ]
+      ]
+    },
+    {
+      "id": "q04",
+      "category": "direct",
+      "question": "What is the largest single expense claim a manager can approve?",
+      "expected_answer": "Up to $250.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "manager_limit",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "A manager may approve a single expense claim up to $250"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "250"
+        ]
+      ]
+    },
+    {
+      "id": "q05",
+      "category": "direct",
+      "question": "How much can an employee request for learning each calendar year?",
+      "expected_answer": "Up to $600 per calendar year.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "learning_budget",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "up to $600 per calendar year"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "600"
+        ]
+      ]
+    },
+    {
+      "id": "q06",
+      "category": "direct",
+      "question": "What meal allowance can be claimed per travel day on an approved domestic overnight business trip?",
+      "expected_answer": "Up to $55 per travel day without itemized meal receipts.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "meal_allowance",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "meal allowance of up to $55 per travel day"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "55"
+        ]
+      ]
+    },
+    {
+      "id": "q07",
+      "category": "direct",
+      "question": "How long is the normal probation period for new employees?",
+      "expected_answer": "Three months.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "probation",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "three-month probation period"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "three-month",
+          "three month",
+          "3-month",
+          "3 month",
+          "three months",
+          "3 months"
+        ]
+      ]
+    },
+    {
+      "id": "q08",
+      "category": "direct",
+      "question": "How many calendar days do employees have to submit an expense claim with an itemized receipt?",
+      "expected_answer": "30 calendar days from the purchase.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "expense_deadline",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within 30 calendar days of the purchase"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "30"
+        ]
+      ]
+    },
+    {
+      "id": "q09",
+      "category": "direct",
+      "question": "What encryption must company laptops use?",
+      "expected_answer": "Full-disk encryption.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "encryption",
+          "any_of": [
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "full-disk encryption"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "full-disk",
+          "full disk"
+        ]
+      ]
+    },
+    {
+      "id": "q10",
+      "category": "paraphrase",
+      "question": "How many vacation days do I get each year?",
+      "expected_answer": "20 paid annual-leave days per calendar year.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "leave_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "20 paid annual-leave days"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "20 days of annual leave"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "20",
+          "twenty"
+        ]
+      ]
+    },
+    {
+      "id": "q11",
+      "category": "paraphrase",
+      "question": "How many days per week am I allowed to work from home?",
+      "expected_answer": "Up to three days per week (manager approval required).",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "remote_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "up to three days per Monday-to-Friday workweek"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "work from home up to three days per week"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "three",
+          "3"
+        ]
+      ]
+    },
+    {
+      "id": "q12",
+      "category": "paraphrase",
+      "question": "If my work laptop gets stolen, how quickly do I have to tell IT?",
+      "expected_answer": "Within one hour of discovering the loss.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "lost_report_time",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within one hour of discovering the loss"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "one hour",
+          "1 hour",
+          "an hour",
+          "60 minutes"
+        ]
+      ]
+    },
+    {
+      "id": "q13",
+      "category": "paraphrase",
+      "question": "What hourly rate am I paid for approved remote assignments?",
+      "expected_answer": "$20 per hour, for up to five hours per day.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "remote_rate",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "$20 per hour for up to five hours per day"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "20"
+        ]
+      ]
+    },
+    {
+      "id": "q14",
+      "category": "paraphrase",
+      "question": "How soon should I reply to internal messages that need action?",
+      "expected_answer": "Within four working hours.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "message_reply",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within four working hours"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "four",
+          "4"
+        ]
+      ]
+    },
+    {
+      "id": "q15",
+      "category": "paraphrase",
+      "question": "Which hours must I be reachable no matter what schedule my team uses?",
+      "expected_answer": "The core window, 10:00 a.m. to 3:00 p.m.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "core_hours",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "from 10:00 a.m. to 3:00 p.m."
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "10:00",
+          "10 a.m.",
+          "10am"
+        ],
+        [
+          "3:00",
+          "3 p.m.",
+          "15:00",
+          "3pm"
+        ]
+      ]
+    },
+    {
+      "id": "q16",
+      "category": "paraphrase",
+      "question": "What is the cap on leave days I can carry over into next year?",
+      "expected_answer": "A maximum of five unused annual-leave days.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "carryover_cap",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "maximum of five unused annual-leave days"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "five",
+          "5"
+        ]
+      ]
+    },
+    {
+      "id": "q17",
+      "category": "paraphrase",
+      "question": "Do I need my manager's approval before spending my learning funds on a course?",
+      "expected_answer": "Yes; the manager must approve the expense before purchase.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "learning_approval",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "manager must approve the expense before purchase"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "manager"
+        ],
+        [
+          "yes",
+          "must",
+          "required",
+          "before"
+        ]
+      ]
+    },
+    {
+      "id": "q18",
+      "category": "multi_part",
+      "question": "How many annual-leave days can be carried over, and by what date must they be used?",
+      "expected_answer": "A maximum of five days; they must be used by March 31.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "carryover_cap",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "maximum of five unused annual-leave days"
+            }
+          ]
+        },
+        {
+          "id": "carryover_deadline",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "must be used by March 31"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "five",
+          "5"
+        ],
+        [
+          "march 31",
+          "31 march"
+        ]
+      ]
+    },
+    {
+      "id": "q19",
+      "category": "multi_part",
+      "question": "How many days per week can I work remotely, and by when must my manager approve the chosen days?",
+      "expected_answer": "Up to three days per week; approval by the preceding Friday.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "remote_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "up to three days per Monday-to-Friday workweek"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "work from home up to three days per week"
+            }
+          ]
+        },
+        {
+          "id": "remote_approval_deadline",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "chosen days by the preceding Friday"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "three",
+          "3"
+        ],
+        [
+          "friday"
+        ]
+      ]
+    },
+    {
+      "id": "q20",
+      "category": "multi_part",
+      "question": "What is a manager's approval limit for a single expense claim, and how long does Finance take to process approved claims?",
+      "expected_answer": "Up to $250; within ten business days after approval.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "manager_limit",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "A manager may approve a single expense claim up to $250"
+            }
+          ]
+        },
+        {
+          "id": "finance_processing",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within ten business days after approval"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "250"
+        ],
+        [
+          "ten",
+          "10"
+        ]
+      ]
+    },
+    {
+      "id": "q21",
+      "category": "multi_part",
+      "question": "What are the core working hours, and how late can I be for an onsite commitment before I must notify my manager?",
+      "expected_answer": "10:00 a.m. to 3:00 p.m.; notify if more than 15 minutes late.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "core_hours",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "from 10:00 a.m. to 3:00 p.m."
+            }
+          ]
+        },
+        {
+          "id": "lateness_notice",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "more than 15 minutes late"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "10:00",
+          "10 a.m.",
+          "10am"
+        ],
+        [
+          "15"
+        ]
+      ]
+    },
+    {
+      "id": "q22",
+      "category": "multi_part",
+      "question": "Who must be told about a lost company phone, how quickly, and what should the report include?",
+      "expected_answer": "The IT team, within one hour; device type, approximate time and place of loss, and whether it may contain stored company information.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "lost_report_time",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "within one hour of discovering the loss"
+            }
+          ]
+        },
+        {
+          "id": "lost_report_contents",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "device type, approximate time and place of loss"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "it team",
+          "it department"
+        ],
+        [
+          "one hour",
+          "1 hour",
+          "an hour",
+          "60 minutes"
+        ],
+        [
+          "device type"
+        ]
+      ]
+    },
+    {
+      "id": "q23",
+      "category": "multi_part",
+      "question": "How long is probation, and how often should the manager give feedback during it?",
+      "expected_answer": "Three months; feedback at least once each month.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "probation",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "three-month probation period"
+            }
+          ]
+        },
+        {
+          "id": "probation_feedback",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "feedback at least once each month"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "three-month",
+          "three month",
+          "3-month",
+          "3 month",
+          "three months",
+          "3 months"
+        ],
+        [
+          "once",
+          "monthly",
+          "each month",
+          "every month"
+        ]
+      ]
+    },
+    {
+      "id": "q24",
+      "category": "multi_part",
+      "question": "How many annual-leave days do employees receive and how many days a week may they work from home?",
+      "expected_answer": "20 annual-leave days per year; up to three remote days per week.",
+      "answerable": true,
+      "facts": [
+        {
+          "id": "leave_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "20 paid annual-leave days"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "20 days of annual leave"
+            }
+          ]
+        },
+        {
+          "id": "remote_days",
+          "any_of": [
+            {
+              "document": "sample_company_policy",
+              "contains": "up to three days per Monday-to-Friday workweek"
+            },
+            {
+              "document": "Company Policy (smoke test)",
+              "contains": "work from home up to three days per week"
+            }
+          ]
+        }
+      ],
+      "answer_checks": [
+        [
+          "20",
+          "twenty"
+        ],
+        [
+          "three",
+          "3"
+        ]
+      ]
+    },
+    {
+      "id": "q25",
+      "category": "unsupported",
+      "question": "How many sick days do employees get per year?",
+      "expected_answer": "Not in the documents (only a note about documentation after more than three consecutive absent days).",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "sick"
+      ]
+    },
+    {
+      "id": "q26",
+      "category": "unsupported",
+      "question": "What is the company's parental leave policy?",
+      "expected_answer": "Not in the documents.",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "parental",
+        "maternity",
+        "paternity"
+      ]
+    },
+    {
+      "id": "q27",
+      "category": "unsupported",
+      "question": "What health insurance coverage does the company provide?",
+      "expected_answer": "Not in the documents.",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "insurance"
+      ]
+    },
+    {
+      "id": "q28",
+      "category": "unsupported",
+      "question": "Is there a stipend for home office furniture?",
+      "expected_answer": "Not in the documents (only an hourly remote-work allowance exists).",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "furniture",
+        "stipend"
+      ]
+    },
+    {
+      "id": "q29",
+      "category": "unsupported",
+      "question": "What is the office dress code?",
+      "expected_answer": "Not in the documents.",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "dress code",
+        "attire"
+      ]
+    },
+    {
+      "id": "q30",
+      "category": "unsupported",
+      "question": "How much is the annual performance bonus?",
+      "expected_answer": "Not in the documents.",
+      "answerable": false,
+      "facts": [],
+      "answer_checks": [],
+      "absent_terms": [
+        "bonus"
+      ]
+    }
+  ]
+}

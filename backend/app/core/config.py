@@ -23,6 +23,10 @@ class Settings(BaseSettings):
 
     # Implementation defaults, not final project decisions. The threshold is
     # disabled by default because suitable cosine values are not yet measured.
+    max_upload_mb: int = 20  # implementation default for PDF uploads
+
+    evaluation_dir: str | None = None  # default: <repo>/evaluation
+
     # Admin auth: a single admin account configured in the environment.
     # Generate the hash with `uv run python -m scripts.hash_password`.
     admin_username: str | None = None

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import AdminNav from '../components/AdminNav.jsx'
 import { getAdminStats } from '../services/admin.js'
 
 function StatCard({ label, value }) {
@@ -34,13 +34,8 @@ export default function AdminDashboardPage() {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h1 className="h3 mb-0">Admin dashboard</h1>
-        <Link to="/admin/documents" className="btn btn-outline-primary btn-sm">
-          <i className="bi bi-files me-1" />
-          Documents
-        </Link>
-      </div>
+      <AdminNav />
+      <h1 className="h3 mb-3">Admin dashboard</h1>
       {error && <div className="alert alert-danger" role="alert">{error}</div>}
       {!stats && !error && (
         <div className="text-muted" role="status">Loading…</div>
