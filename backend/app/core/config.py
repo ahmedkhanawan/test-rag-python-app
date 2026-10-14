@@ -23,6 +23,13 @@ class Settings(BaseSettings):
 
     # Implementation defaults, not final project decisions. The threshold is
     # disabled by default because suitable cosine values are not yet measured.
+    # Admin auth: a single admin account configured in the environment.
+    # Generate the hash with `uv run python -m scripts.hash_password`.
+    admin_username: str | None = None
+    admin_password_hash: str | None = None
+    jwt_secret: str | None = None  # at least 32 characters
+    jwt_expire_minutes: int = 60
+
     retrieval_top_k: int = 5
     retrieval_score_threshold: float | None = None
 
