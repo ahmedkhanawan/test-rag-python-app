@@ -4,6 +4,7 @@ export function describeChatError(error) {
   if (!error?.response) return 'Cannot reach the backend. Check that the API is running.'
   if (status === 404) return 'This conversation no longer exists on the server. Start a new conversation.'
   if (status === 422) return 'Please enter a valid question.'
+  if (status === 429) return 'Too many requests. Please wait a moment and try again.'
   const detail = error.response.data?.detail
   if (typeof detail === 'string') return detail
   return 'Something went wrong. Please try again.'

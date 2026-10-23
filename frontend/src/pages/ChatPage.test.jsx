@@ -113,6 +113,17 @@ describe('Chat UI', () => {
     expect(screen.queryByText('Thinking…')).not.toBeInTheDocument()
   })
 
+  it('shows a friendly message when rate limited and keeps the question', async () => {
+    sendChatMessage.mockRejectedValue({
+      response: { status: 429, data: { detail: 'Too many requests. Please wait a moment and try again.' } },
+    })
+    const user = userEvent.setup()
+    renderAt()
+    await ask(user, 'Again')
+    expect(await screen.findByRole('alert')).toHaveTextContent('Too many requests')
+    expect(screen.getByLabelText('Question')).toHaveValue('Again')
+  })
+
   it('shows a network error when the backend is unreachable', async () => {
     sendChatMessage.mockRejectedValue(new Error('Network Error'))
     const user = userEvent.setup()

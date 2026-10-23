@@ -13,7 +13,7 @@ import sys
 
 from openai import OpenAI
 
-from app.core.config import get_settings
+from app.core.config import get_settings, reveal
 from app.core.database import get_sessionmaker
 from app.rag.evaluation import (
     MODES,
@@ -40,7 +40,8 @@ def main() -> int:
     args = parser.parse_args()
 
     settings = get_settings()
-    if not settings.openai_api_key:
+    api_key = reveal(settings.openai_api_key)
+    if not api_key:
         print("OPENAI_API_KEY is not configured.")
         return 2
 
@@ -53,7 +54,7 @@ def main() -> int:
             print(f"  - {p}")
         return 1
 
-    client = UsageRecordingClient(OpenAI(api_key=settings.openai_api_key))
+    client = UsageRecordingClient(OpenAI(api_key=api_key))
     ctx = RunContext(
         embedder=EmbeddingService(client=client),
         store=VectorStore(),

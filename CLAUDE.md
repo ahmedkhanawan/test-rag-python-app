@@ -24,21 +24,24 @@ Authoritative list: MASTER_PLAN.md Section 44. In use now:
 - Python + FastAPI, Pydantic, SQLAlchemy, SQLite (UUID primary keys), pytest, `.env` configuration
 - **uv** for Python package/environment management (run backend commands from `backend/` with `uv run`)
 - **PyMuPDF** for PDF extraction (PDF is the only V1 format so far)
-- **Qdrant** as vector database, running as a **separate Docker container** in development (`scripts/start-qdrant.sh`, image `qdrant/qdrant:v1.19.2`); the Python app is not containerized yet
+- **Qdrant** as vector database, always a **separate container** (image `qdrant/qdrant:v1.19.2`): standalone via `scripts/start-qdrant.sh` for development, or as a service in `docker-compose.yml`. Both use `./qdrant_storage`; never run the two at once
+- **Docker Compose (approved, M11)**: three services: `qdrant`, `backend` (FastAPI, non-root, SQLite in the `app-data` volume, no published port) and `frontend` (nginx serving the React build and proxying `/api` to the backend, so the browser sees one origin and CORS stays off). `docker compose up --build -d` serves `http://localhost:8080`; details in `docs/deployment.md`
+- **Auth (approved, M9)**: one admin account from environment variables (`ADMIN_USERNAME`, Argon2id `ADMIN_PASSWORD_HASH`, `JWT_SECRET`), HS256 JWT with expiry (PyJWT + pwdlib), Bearer token kept in `sessionStorage`. No user table, no OAuth. Chat stays public by design; all other routes except health and login require the admin token
+- **Production-quality behavior (M11)**: errors are `{"detail", "request_id"}`; structured/redacted logging (`LOG_FORMAT=text|json`); `ENVIRONMENT=production` fails startup on missing/weak secrets; login throttling and a per-IP rate limit on the public chat endpoint (in-memory, per-process); upload limits; CORS off unless `CORS_ORIGINS` is set; GitHub Actions CI (`.github/workflows/ci.yml`)
 - **Colima** is the working Docker runtime on the developer's Mac (context `colima`); Docker Desktop is not used and `lima-docker` is inactive
 - **OpenAI APIs**: embeddings `text-embedding-3-small`, generation GPT-5.4 mini (`gpt-5.4-mini`). Both are approved; do not change them
-- React, Bootstrap, Bootstrap Icons, React Router, Axios (no Redux initially) for the later frontend
+- Frontend: React 19 + Vite, Bootstrap, Bootstrap Icons, React Router, Axios; Vitest + Testing Library; oxlint (no Redux or other state library)
 - Source citations, ingestion, and semantic retrieval are core; the assistant must refuse to invent answers when documents lack support
 - Citations are application-owned (from retrieved chunks), never produced by the LLM
 - Claude Code is the primary implementation tool; Cursor and MCP are not part of V1
 
 ## Still open (ask before assuming)
 
-Formats beyond PDF; chunk size/overlap, Top-K, similarity threshold (current values are implementation defaults only, kept configurable); auth/JWT details; streaming mechanism; production relational DB; application Docker Compose topology; hosting provider; evaluation methodology; React component/page architecture; visual design; admin dashboard metrics; sample document content; branding. See MASTER_PLAN.md Sections 45-46.
+Formats beyond PDF; chunk size/overlap, Top-K, similarity threshold (current values 1000/150/5/none are implementation defaults only, kept configurable and not tuned); streaming mechanism; production relational DB; hosting provider and TLS; visual design; sample document content; branding. The evaluation methodology (M10) is implemented but remains open to refinement. See MASTER_PLAN.md Sections 45-46.
 
 ## Current status
 
-Milestones 0-5 are completed and committed (docs, backend foundation, database, PDF ingestion, embeddings + Qdrant, RAG engine). The current milestone is **Milestone 6 - Chat API** (`POST /api/chat`, conversation persistence, sources). Do not implement later milestones unless explicitly requested.
+Milestones 0-10 are complete, committed and pushed (docs, backend, database, PDF ingestion, embeddings + Qdrant, RAG engine, chat API, React foundation, chat UI, admin panel, evaluation). **Milestone 11 (production quality) is implemented and awaits final verification and commit.** The next milestone is **Milestone 12 - Portfolio polish**; do not start it unless explicitly requested. Known limitations are listed in `docs/deployment.md` (per-process in-memory rate limits, no TLS, single-instance SQLite/Qdrant).
 
 ## Prompt/report conventions
 
@@ -46,4 +49,11 @@ Expect prompts structured as OBJECTIVE / SCOPE / REQUIREMENTS / DO NOT / TESTING
 
 ## Testing
 
-Run tests locally (`uv run pytest -q` from `backend/`; no real OpenAI or Qdrant needed) and report only relevant failures. Documentation-only milestones are verified by file existence, Markdown formatting, and consistency with `MASTER_PLAN.md`.
+Run these locally; no real OpenAI or Qdrant is needed (tests use fakes and in-memory Qdrant). Report only relevant failures.
+
+```bash
+cd backend && uv run pytest -q                                  # backend
+cd frontend && npm test && npm run lint && npm run build        # frontend
+```
+
+CI (`.github/workflows/ci.yml`) runs the same checks plus a Docker build. The RAG evaluation (`cd backend && uv run python -m scripts.run_evaluation --mode retrieval|full`) calls OpenAI and costs money: run it only when asked and never retry failed calls. Documentation-only changes are verified by file existence, Markdown formatting, and consistency with `MASTER_PLAN.md` and the code.

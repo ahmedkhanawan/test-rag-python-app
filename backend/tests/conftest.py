@@ -23,3 +23,16 @@ def engine():
 def session(engine) -> Iterator[Session]:
     with sessionmaker(bind=engine)() as s:
         yield s
+
+
+@pytest.fixture(autouse=True)
+def _reset_login_limiter():
+    """The login and chat limiters are process-wide state; keep tests independent."""
+    from app.api.auth import login_limiter
+    from app.api.chat import chat_limiter
+
+    login_limiter.reset()
+    chat_limiter.reset()
+    yield
+    login_limiter.reset()
+    chat_limiter.reset()

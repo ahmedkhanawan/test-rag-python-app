@@ -49,39 +49,52 @@ in the available company documents.
 
 ## Citations (confirmed requirement)
 
-Each chunk carries metadata identifying its origin. Planned fields (exact schema not finalized):
+Citations are application-owned: they come from the retrieved chunks, never from the LLM. The prompt labels each excerpt `[Source N]` in retrieval order and the API returns the same list, so `[Source N]` in the answer maps to `sources[N-1]`. Each source carries:
 
 ```python
 {
-    "document_id": 12,
-    "document_name": "Employee Handbook.pdf",
-    "page_number": 18,
-    "chunk_index": 42,
-    "section": "Remote Work Policy",
+    "source_number": 1,
+    "document_id": "9c1c64c0-...",     # UUID
+    "document_name": "sample_company_policy",
+    "chunk_id": "...",                 # UUID, also the Qdrant point id
+    "chunk_index": 4,
+    "page_number": 2,
+    "section": None,                   # from the PDF outline when it has one
+    "score": 0.61,                     # cosine similarity
+    "text": "...",
 }
 ```
 
-The UI shows the sources used for each answer (document, page, section). Final citation UX is undecided.
+The chat UI shows document, page, section, relevance and the chunk text for each source. Sources are not stored on the server (only messages are), so the browser keeps them with the conversation.
 
 ## Ingestion lifecycle
 
-Upload → extract text → clean → chunk → generate embeddings → store vectors → `READY`. Whether processing is asynchronous/background is not yet decided.
+Upload → validate (`.pdf`, `%PDF-` header, size limit) → extract text per page (PyMuPDF) → clean → chunk (page-bounded, characters) → store document and chunks in SQLite → generate embeddings → upsert into Qdrant → `READY`. It runs synchronously inside the upload request (no background queue). Failures set the document to `FAILED`: extraction problems store no chunks; embedding or Qdrant problems keep the chunks so **re-index** (re-embeds the stored chunks) can recover it. Delete removes the Qdrant points first, then the database rows.
 
 ## Configuration
 
-Chunking and retrieval must be **configurable**, not hard-coded. Model/provider settings must not be scattered through the code. Candidate settings: LLM provider/model, temperature, max tokens, embedding model, Top-K, chunk size, chunk overlap, similarity threshold (final list not approved).
+Chunking and retrieval are configurable through environment variables, not hard-coded (see `.env.example`):
 
-## Open decisions
+| Setting | Default | Notes |
+| --- | --- | --- |
+| `CHUNK_SIZE` / `CHUNK_OVERLAP` | 1000 / 150 | characters; overlap must be smaller than size |
+| `RETRIEVAL_TOP_K` | 5 | |
+| `RETRIEVAL_SCORE_THRESHOLD` | unset | disabled; measured scores of answerable and unsupported questions overlap (see [evaluation.md](evaluation.md)) |
+| `OPENAI_EMBEDDING_MODEL` | `text-embedding-3-small` | approved |
+| `OPENAI_CHAT_MODEL` | `gpt-5.4-mini` | approved; no temperature is set |
+
+Qdrant uses cosine distance; the vector size is taken from the first embedding response (1536 for `text-embedding-3-small`).
+
+## Status of earlier open decisions
 
 | Item | Status |
 | --- | --- |
-| OpenAI LLM model | Open |
-| Embedding provider/model | Open (OpenAI embeddings possible, not approved) |
-| Formats beyond PDF (TXT, Markdown, DOCX) | Open |
-| Chunk size / overlap | Open (example: 800 / 100, not confirmed) |
-| Top-K / similarity threshold | Open (proposed: 5 / 0.70, not confirmed) |
-| Streaming mechanism | Open |
-| Evaluation methodology | Open |
+| LLM and embedding models | Decided: `gpt-5.4-mini`, `text-embedding-3-small` |
+| Chunk size / overlap, Top-K | Implementation defaults above; configurable, not tuned |
+| Similarity threshold | Open; disabled |
+| Formats beyond PDF (TXT, Markdown, DOCX) | Open; PDF only |
+| Streaming mechanism | Open; answers are returned in one response |
+| Evaluation methodology | Implemented in Milestone 10 ([evaluation.md](evaluation.md)); may evolve |
 
 ## Excluded from V1
 

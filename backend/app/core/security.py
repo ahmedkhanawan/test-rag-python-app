@@ -5,10 +5,9 @@ import jwt
 from pwdlib import PasswordHash
 from pwdlib.hashers.argon2 import Argon2Hasher
 
-from app.core.config import get_settings
+from app.core.config import MIN_JWT_SECRET_LENGTH, get_settings, reveal
 
 JWT_ALGORITHM = "HS256"
-MIN_SECRET_LENGTH = 32
 
 _hasher = PasswordHash((Argon2Hasher(),))
 # Verified against when the username is wrong, so timing does not reveal it.
@@ -25,12 +24,12 @@ def hash_password(password: str) -> str:
 
 def auth_configured() -> bool:
     s = get_settings()
-    # print(s)
+    secret = reveal(s.jwt_secret)
     return bool(
         s.admin_username
-        and s.admin_password_hash
-        and s.jwt_secret
-        and len(s.jwt_secret) >= MIN_SECRET_LENGTH
+        and reveal(s.admin_password_hash)
+        and secret
+        and len(secret) >= MIN_JWT_SECRET_LENGTH
     )
 
 
@@ -41,7 +40,7 @@ def authenticate_admin(username: str, password: str) -> bool:
     s = get_settings()
     user_ok = hmac.compare_digest(username.encode(), s.admin_username.encode())
     try:
-        pw_ok = _hasher.verify(password, s.admin_password_hash if user_ok else _DUMMY_HASH)
+        pw_ok = _hasher.verify(password, reveal(s.admin_password_hash) if user_ok else _DUMMY_HASH)
     except Exception:  # malformed configured hash: fail closed
         pw_ok = False
     return user_ok and pw_ok
@@ -53,7 +52,7 @@ def create_access_token(subject: str) -> tuple[str, int]:
     lifetime = timedelta(minutes=s.jwt_expire_minutes)
     now = datetime.now(timezone.utc)
     payload = {"sub": subject, "iat": now, "exp": now + lifetime}
-    return jwt.encode(payload, s.jwt_secret, algorithm=JWT_ALGORITHM), int(lifetime.total_seconds())
+    return jwt.encode(payload, reveal(s.jwt_secret), algorithm=JWT_ALGORITHM), int(lifetime.total_seconds())
 
 
 def decode_access_token(token: str) -> str | None:
@@ -63,7 +62,7 @@ def decode_access_token(token: str) -> str | None:
         return None
     try:
         payload = jwt.decode(
-            token, s.jwt_secret, algorithms=[JWT_ALGORITHM], options={"require": ["exp", "sub"]}
+            token, reveal(s.jwt_secret), algorithms=[JWT_ALGORITHM], options={"require": ["exp", "sub"]}
         )
     except jwt.PyJWTError:
         return None

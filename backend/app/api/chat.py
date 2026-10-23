@@ -2,13 +2,15 @@ import logging
 import uuid
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel, field_validator
+from fastapi import APIRouter, Depends, HTTPException, Request, status
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.api.deps import Answerer, get_answerer
+from app.core.config import get_settings
 from app.core.database import get_db
+from app.core.ratelimit import FailureLimiter
 from app.models import Conversation, Message, MessageRole
 from app.models.base import utcnow
 from app.rag.pipeline import RAGResult
@@ -20,9 +22,32 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["chat"])
 
+# Per-process, in-memory (resets on restart), keyed by client IP. Each chat request can
+# cost OpenAI credit, and the endpoint is public by design.
+chat_limiter = FailureLimiter()
+
+
+def enforce_chat_rate_limit(request: Request) -> None:
+    settings = get_settings()
+    limit = settings.chat_rate_limit_requests
+    if limit == 0:
+        return
+    client_ip = request.client.host if request.client else "unknown"
+    wait = chat_limiter.hit(client_ip, limit, settings.chat_rate_limit_window_seconds)
+    if wait:
+        logger.warning("Chat rate limit hit for client %s", client_ip)
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="Too many requests. Please wait a moment and try again.",
+            headers={"Retry-After": str(wait)},
+        )
+
+
+MAX_QUESTION_CHARS = 4000
+
 
 class ChatRequest(BaseModel):
-    question: str
+    question: str = Field(max_length=MAX_QUESTION_CHARS)
     conversation_id: uuid.UUID | None = None
 
     @field_validator("question")
@@ -79,7 +104,9 @@ def _sources(result: RAGResult) -> list[SourceOut]:
     ]
 
 
-@router.post("/chat", response_model=ChatResponse)
+@router.post(
+    "/chat", response_model=ChatResponse, dependencies=[Depends(enforce_chat_rate_limit)]
+)
 def chat(
     request: ChatRequest,
     db: Session = Depends(get_db),

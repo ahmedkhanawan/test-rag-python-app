@@ -1,9 +1,9 @@
 # MASTER_PLAN.md
 # Test RAG Python App — Canonical Project Plan
 
-> **Status:** Implementation in progress; Milestones 0–4 completed  
+> **Status:** Milestones 0–10 completed and pushed; Milestone 11 implementation and isolated Compose verification completed, final commit/push pending; Milestone 12 next  
 > **Purpose:** Canonical source of truth for the Test RAG Python App project  
-> **Last updated:** 2026-10-11  
+> **Last updated:** 2026-10-16  
 > **Project name:** Test RAG Python App  
 > **Demo application concept:** Company Knowledge Assistant
 
@@ -225,7 +225,7 @@ Planned metadata includes:
 
 ```python
 {
-    "document_id": 12,
+    "document_id": "550e8400-e29b-41d4-a716-446655440000",
     "document_name": "Employee Handbook.pdf",
     "page_number": 18,
     "chunk_index": 42,
@@ -298,7 +298,7 @@ The approved OpenAI model is **GPT-5.4 mini**.
 
 - **PyMuPDF** is the planned PDF parsing technology.
 
-The final set of supported file formats has not yet been finalized.
+V1 supports PDF only. Do not add TXT, Markdown, DOCX, or other formats unless there is a concrete requirement and explicit approval.
 
 ## Frontend
 
@@ -375,7 +375,7 @@ The conceptual architecture is:
         └─────────────┘
 ```
 
-This is a conceptual architecture. Exact deployment topology and service boundaries remain subject to implementation.
+This diagram describes logical application components. The approved local production-style deployment topology is three services: Qdrant, FastAPI backend, and frontend served by Nginx. Nginx serves the React build and proxies same-origin `/api` requests to FastAPI. This does not make the application a microservices architecture.
 
 ---
 
@@ -441,7 +441,7 @@ frontend/
 └── package.json
 ```
 
-The exact React architecture is not yet finalized.
+The React architecture is implemented. Treat the current `frontend/src` structure and `CLAUDE.md` as the implementation reference; refactoring is allowed when it improves clarity but should not add unnecessary state-management or framework complexity.
 
 ---
 
@@ -525,23 +525,13 @@ A document should have a visible status such as:
 READY
 ```
 
-The exact asynchronous/background processing design is not yet finalized.
+V1 document ingestion is synchronous in the backend request flow; no separate worker/queue is used. This is intentional for the small portfolio scope. Background jobs and task queues remain out of scope unless a future approved change justifies them.
 
 ---
 
-# 17. Initial Document Format Scope — Open Question
+# 17. Initial Document Format Scope — V1 Decision
 
-PDF support is planned and PyMuPDF was selected as the planned PDF parsing technology.
-
-Other formats discussed included:
-
-- TXT
-- Markdown
-- DOCX
-
-However, the exact V1 supported-format list has **not** been formally approved.
-
-Do not assume all four formats must be implemented in V1 without further confirmation.
+V1 supports **PDF only**, parsed with PyMuPDF. TXT, Markdown, and DOCX were considered but are not V1 requirements. Additional formats are out of scope unless a concrete requirement is raised and explicitly approved.
 
 ---
 
@@ -696,7 +686,7 @@ Streaming responses were identified as a desirable professional feature.
 
 The intended UX is for the assistant's response to appear progressively rather than waiting for the entire response.
 
-The exact streaming mechanism has not yet been finalized.
+True token-by-token or progressive response streaming is **not implemented in V1**. The chat UI currently submits a request and displays the completed response. Streaming may be added during portfolio polish only if it is worthwhile; it is not required to close Milestone 11.
 
 ---
 
@@ -735,7 +725,7 @@ This is intended to demonstrate the distinction between:
 - context selection,
 - final answer generation.
 
-It is a planned feature, but exact UI and implementation are not yet finalized.
+The retrieval playground is implemented in the admin area. Its current UI and API behavior are the V1 baseline; refinements can be made during portfolio polish without changing the core architecture.
 
 ---
 
@@ -760,7 +750,7 @@ LLM                 Connected
 Embedding Service   Connected
 ```
 
-Exact metrics and health checks are not yet finalized.
+The current dashboard provides document/chunk/conversation/message counts and document-status breakdowns. Keep this as the V1 baseline; additional metrics or deeper service-health checks are optional polish, not a blocker.
 
 ---
 
@@ -805,7 +795,7 @@ Average latency           1.7 sec
 
 These numbers are illustrative only and must never be presented as actual results until measured.
 
-The exact evaluation methodology has not yet been finalized.
+The initial evaluation methodology is implemented as described in Milestones 10 and 47. Further metrics or dataset expansion are optional; do not describe the initial 30-question corpus as proof of general RAG quality.
 
 ---
 
@@ -842,7 +832,7 @@ Potential approach:
 
 The intention is **not** to build enterprise-grade identity management.
 
-The exact authentication implementation has not yet been approved.
+Approved and implemented V1 authentication: one administrator configured through environment variables (`ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET`, and `JWT_EXPIRE_MINUTES`); Argon2id password hashing; JWT bearer authentication; protected admin APIs and React routes; token storage in `sessionStorage` with an in-memory fallback. Public chat and health endpoints remain public. This is intentionally not enterprise identity management or multi-user authorization. Login throttling and public chat rate limiting are implemented in memory per backend process. Chat defaults to 20 requests per client IP per 60 seconds; `CHAT_RATE_LIMIT_REQUESTS=0` disables the chat limit. Over-limit responses return 429 with `Retry-After` and a request ID; blocked requests do not reach OpenAI or count against the active window. Both login and chat limits are single-process safeguards, not shared/distributed controls.
 
 ---
 
@@ -854,7 +844,7 @@ PostgreSQL was mentioned as a possible later production choice.
 
 The initial project should avoid unnecessary infrastructure complexity.
 
-The exact production relational database choice is **not yet finalized**.
+SQLite is the approved relational database for V1, including the local Compose demo. A different database may be considered only if a real deployment requirement justifies it.
 
 ---
 
@@ -924,7 +914,7 @@ Deployment configuration
 
 This is intentional to avoid debugging application problems and container problems simultaneously.
 
-A final Docker Compose setup is expected, but the exact service topology is not yet finalized.
+Approved application Compose topology: three services—Qdrant, FastAPI backend, and Nginx serving the built React frontend. Nginx proxies `/api` to the backend, so the browser uses same-origin API requests and CORS is disabled by default. The local development Qdrant container and Compose Qdrant service share the same default storage path; stop the development container before starting Compose. See `docs/deployment.md` for operational steps. The isolated scratch-copy `docker compose up` verification has been completed and reported successful; it is distinct from the earlier image-build/temporary-network tests. The verification used a separate database volume and Qdrant storage, and the original database/Qdrant storage hashes were unchanged afterward.
 
 ---
 
@@ -942,7 +932,7 @@ The project should be prepared for:
 - API/frontend separation as appropriate,
 - secure handling of API keys.
 
-A specific cloud provider and final deployment architecture are **open questions**.
+No cloud hosting provider has been selected. The committed deployment target for V1 is a local Docker Compose setup suitable for demonstration and evaluation. A public hosted deployment is optional and should be chosen only during portfolio polish if it adds value within the time/budget constraints.
 
 ---
 
@@ -1106,9 +1096,9 @@ Verification completed:
 
 The exact final retrieval Top-K and similarity threshold remain implementation defaults rather than permanent project decisions.
 
-## Milestone 5 — RAG engine
+## Milestone 5 — RAG engine — COMPLETED
 
-Implement:
+Implemented:
 
 ```text
 Question
@@ -1126,17 +1116,17 @@ Answer + citations
 
 This is the central RAG milestone.
 
-## Milestone 6 — Chat API
+## Milestone 6 — Chat API — COMPLETED
 
-Implement:
+Implemented:
 
 - chat endpoint
 - conversation persistence
 - sources/citations
 
-## Milestone 7 — React application
+## Milestone 7 — React application — COMPLETED
 
-Implement:
+Implemented:
 
 - React
 - Bootstrap
@@ -1145,9 +1135,9 @@ Implement:
 - application layout
 - authentication foundation
 
-## Milestone 8 — Chat UI
+## Milestone 8 — Chat UI — COMPLETED
 
-Implement:
+Implemented:
 
 - conversation list
 - chat
@@ -1155,9 +1145,9 @@ Implement:
 - sources
 - new conversation
 
-## Milestone 9 — Admin panel
+## Milestone 9 — Admin panel — COMPLETED
 
-Implement:
+Implemented:
 
 - dashboard
 - documents
@@ -1166,18 +1156,18 @@ Implement:
 - re-index
 - retrieval playground
 
-## Milestone 10 — Evaluation
+## Milestone 10 — Evaluation — COMPLETED
 
-Implement:
+Implemented:
 
 - evaluation dataset
 - retrieval metrics
 - answer evaluation
 - evaluation UI
 
-## Milestone 11 — Production quality
+## Milestone 11 — Production quality — IMPLEMENTED AND LOCALLY VERIFIED; COMMIT/PUSH PENDING
 
-Add:
+Implemented/reported:
 
 - error handling
 - logging
@@ -1516,210 +1506,111 @@ The following decisions are currently considered **approved/confirmed**:
 
 ---
 
-# 45. Proposals / Not Yet Finalized
+# 45. Decisions Resolved During Implementation
 
-The following were discussed but should **not** be treated as immutable decisions:
+The following items from the original planning phase have been settled by explicit approval or by the implemented V1 design. They are no longer unresolved architecture questions:
 
-1. Exact supported document formats beyond PDF.
-2. Exact chunk size.
-3. Exact chunk overlap.
-4. Exact Top-K retrieval value.
-5. Exact similarity threshold.
-6. Exact authentication/JWT implementation.
-7. Exact streaming mechanism.
-8. Exact relational production database.
-9. Exact Docker Compose service topology for the application.
-10. Exact cloud deployment provider.
-11. Exact evaluation methodology and metrics.
-12. Exact React component/page architecture.
-13. Exact visual design.
-14. Exact API route naming.
-15. Exact admin dashboard metrics.
+1. **V1 document formats:** PDF only. PyMuPDF is the parser. TXT, Markdown, and DOCX are not V1 requirements.
+2. **Relational database:** SQLite for V1, including the Compose demo. PostgreSQL is not required for this portfolio version.
+3. **Authentication:** One environment-configured administrator, Argon2id password hash, JWT bearer tokens, and protected admin routes; no OAuth, multi-tenancy, or user-management system.
+4. **Ingestion execution:** Synchronous request-driven ingestion; no Celery, Redis, Kafka, or separate worker.
+5. **Compose topology:** Qdrant + FastAPI backend + Nginx/frontend. Nginx serves the React build and proxies `/api` to the backend using same-origin requests.
+6. **Evaluation V1:** A 30-question evaluation dataset; retrieval metrics Recall@5, Hit@5, and MRR; deterministic checks for answer correctness, refusal behavior, citations, and numeric grounding; CLI runner, saved results, and an admin evaluation page. Initial success on the small fictional corpus is a baseline, not a general quality guarantee.
+7. **Retrieval playground:** Implemented in the admin area.
+8. **Application identity:** The demo concept/name remains **Company Knowledge Assistant**.
+9. **Sample content:** Fictional company-policy/demo documents; never use confidential company documents.
+10. **Streaming:** True progressive/token streaming is not implemented. The current request/response chat behavior is the V1 baseline; streaming is optional polish, not a blocker.
 
-These must not be silently converted into permanent decisions.
+Implementation defaults such as chunk size, overlap, Top-K, and score threshold remain configurable tuning parameters, not permanent architectural decisions. Keep the current tested defaults unless evaluation evidence supports a change; do not tune them merely to make illustrative metrics look better.
 
----
+# 46. Remaining Deliberate Choices and Constraints
 
-# 46. Open Questions
+These are genuinely optional decisions, not blockers for completing the V1 application:
 
-Before or during implementation, decisions may be required for:
+- **Cloud hosting/live demo:** No provider selected. Local Docker Compose and a public GitHub repository are the baseline; a hosted demo is optional during Milestone 12.
+- **Cursor subscription:** Optional; Claude Code remains the primary implementation tool.
+- **Final branding/visual polish:** The concept is fixed, but final logo/colors/marketing copy can be chosen during Milestone 12 without architecture changes.
+- **Final sample corpus:** The document set may be refined for a coherent demo, keeping it fictional and small.
+- **Future production database:** PostgreSQL can be considered only if a real deployment requirement justifies it; it is not needed for V1.
+- **Evaluation expansion:** The existing evaluation methodology is implemented. More metrics or a larger dataset are optional follow-up work, not a prerequisite for declaring the initial evaluation milestone complete.
 
-- Which exact V1 document formats?
-- SQLite only vs PostgreSQL for deployment?
-- Which hosting provider, if deployment is pursued?
-- Exact authentication mechanism?
-- Exact streaming mechanism?
-- Exact evaluation methodology?
-- Exact sample company/document content?
-- Exact application branding/name?
-- Whether the final project should include a live public demo?
-- Whether Cursor should be added later?
-
-These should be resolved deliberately rather than assumed.
-
----
+Do not block ongoing work on these optional choices. Do not introduce new infrastructure or scope merely to resolve an optional item.
 
 # 47. Current Implementation Status
 
-## Overall
+## Overall status — 2026-10-16
 
-**Implementation is in progress. Milestones 0, 1, 2, 3, and 4 are completed and committed. Milestone 5 is the next implementation milestone.**
+**Milestones 0–10 are completed; the combined M9/M10 work was committed as `51593b0 feat: complete admin tools and RAG evaluation` and pushed to `origin/main`. Milestone 11 implementation, the isolated scratch-copy Compose verification, and final local checks are reported complete. M11 changes remain uncommitted/unpushed according to the latest report; review the diff and Git status before making a single combined M11 commit. Milestone 12 is next after that commit is reviewed and recorded.**
 
-The canonical plan remains the source of truth for approved architecture and open decisions. Actual implementation status below reflects the reviewed repository state as of 2026-10-11.
+This section records the latest status supported by the project conversation. Do not infer that a test or deployment check passed unless its result was actually reported.
 
-## Completed Milestones
+## Completed milestones
 
-### Milestone 0 — Project specification — COMPLETED
+- **M0 — Project specification:** `CLAUDE.md`, README, architecture and RAG-pipeline documentation created and reviewed.
+- **M1 — Backend foundation:** Python/uv, FastAPI, settings, logging, health endpoint, pytest/httpx foundation and environment examples.
+- **M2 — Database:** SQLAlchemy/SQLite models for documents, chunks, conversations, messages and query logs; UUID IDs, relationships and constraints.
+- **M3 — Ingestion/chunking:** PDF extraction with PyMuPDF, cleanup, deterministic page-bounded character chunking, page/section metadata, persistence and failure statuses.
+- **M4 — Embeddings/Qdrant:** OpenAI `text-embedding-3-small`, vector-store abstraction, Qdrant collection validation, UUID point IDs, metadata payloads, indexing and retrieval. Real Qdrant `v1.19.2` integration was smoke-tested; this did not itself make a real OpenAI API call.
+- **M5 — RAG engine:** Retrieval/context assembly, grounded prompting, OpenAI generation with approved `gpt-5.4-mini`, citations and insufficient-evidence refusal behavior. Commit recorded earlier as `c614e7b`; 60 tests were reported at that stage.
+- **M6 — Chat API:** Chat endpoint, persistence and source citations. Commit `f23a1be`; 78 backend tests were reported at that stage.
+- **M7 — React foundation:** React/Vite, Bootstrap, routing, API client and application shell. Commit `8314887`; frontend tests, lint and build passed at that stage.
+- **M8 — Chat UI:** Conversation list, chat flow, citations and new conversations. True progressive/token streaming is not implemented. Commit `62e0701`; 17 frontend tests, lint/build and 78 backend tests were reported at that stage.
+- **M9/M10 — Admin and evaluation:** Authentication/admin dashboard, document upload/delete/re-index, retrieval playground, 30-question evaluation dataset, Recall@5/Hit@5/MRR, deterministic answer checks, CLI runner, saved results and evaluation UI. Combined commit `51593b0` is pushed to `origin/main`. Reported verification: 139 backend tests and 38 frontend tests passed; frontend lint/build passed. The first evaluation run passed all 30 questions on the small fictional corpus; this is only a baseline for that corpus.
 
-Created and reviewed the initial project specification artifacts, including:
+## Milestone 11 — Production quality — implemented and locally verified; commit/push pending
 
-- `CLAUDE.md`
-- `README.md`
-- `docs/architecture.md`
-- `docs/rag-pipeline.md`
+Reported implementation includes:
 
-The canonical `MASTER_PLAN.md` was preserved as the approved source of truth.
+- backend/frontend Dockerfiles and a three-service Compose configuration (Qdrant, backend, Nginx/frontend)
+- Nginx serving the frontend and proxying same-origin `/api` requests
+- GitHub Actions CI for backend, frontend and Docker-related checks
+- request IDs, structured/text logging options, safe error responses and correlated server-side errors
+- stricter environment validation and production fail-fast behavior
+- login throttling, request/upload limits, sanitized filenames and sensitive-value masking
+- protections against leaking passwords/API keys through validation responses and logs
+- in-memory per-IP chat throttling: default 20 requests per 60 seconds, configurable; `CHAT_RATE_LIMIT_REQUESTS=0` disables it; 429 responses include `Retry-After` and request ID; blocked requests do not reach OpenAI
+- frontend handling for chat 429 responses that preserves the user question
+- deployment documentation and updated README/architecture/RAG docs
 
-### Milestone 1 — Backend foundation — COMPLETED
+Latest reported verification:
 
-Implemented:
+- Backend: **186 tests passed**.
+- Frontend: **39 tests passed**; lint and production build passed.
+- CI workflow YAML parsed locally; `uv lock --check`, `npm ci --dry-run`, and Docker Compose configuration validation against `.env.example` passed. GitHub Actions itself has **not** run, so hosted CI remains unverified until a push/PR triggers it.
+- Full isolated Compose verification completed in disposable project `cka-test` under `~/cka-compose-test`, using a separate database volume, separate Qdrant storage, dummy admin credentials and a random JWT secret. All three services became healthy.
+- Through Nginx on port 8080, the React app and a deep SPA route returned 200; `/api/health` proxied correctly; protected documents without a token returned 401; incorrect credentials returned 401; login succeeded; document list and dashboard stats matched the seeded disposable database; saved evaluation runs were visible; retrieval returned relevant chunks.
+- Container logs were checked for secrets; none of the API key, password, password hash or JWT was found. One low-cost OpenAI embedding call was made for the real retrieval check; no chat request was made through the Compose stack.
+- The scratch stack and temporary resources were removed. The original `backend/app.db` and all 43 files under `qdrant_storage/` had identical content hashes before and after verification. The development Qdrant container was restarted and all 15 original points were confirmed present.
+- GitHub Actions itself was not run. The workflow remains to be verified by an actual push/PR.
 
-- Python backend project managed with `uv`
-- FastAPI application
-- environment configuration with Pydantic Settings
-- logging foundation
-- `/api/health` endpoint
-- pytest/httpx testing foundation
-- `.env.example` and project `.gitignore` configuration
+M11 implementation and isolated Compose verification are therefore **complete locally**, but M11 is not yet committed/pushed according to the latest report. Review `git status` and the complete diff before committing the combined M11, rate-limit and documentation changes.
 
-Verification: health endpoint and backend tests passed; the milestone was committed.
+Known V1 limitations to document honestly:
 
-### Milestone 2 — Database — COMPLETED
+- SQLite and local Qdrant are single-instance demo infrastructure, not a horizontally scalable deployment.
+- Authentication is single-admin, with no token revocation or user-management system.
+- Login and chat rate limits are in-memory and per process; they reset on restart and are not shared between workers.
+- No TLS is configured by the local Compose stack; a public deployment needs HTTPS/TLS termination and a deployment-specific security review.
+- True progressive/token streaming is not implemented in V1.
+- Stale `PROCESSING` document recovery and multi-instance operation are not established V1 capabilities.
+- The backend Docker build reports a non-blocking `useradd` warning because UID 10001 is above the system-UID range; it was left unchanged after testing.
+- GitHub Actions has not yet run remotely. Local workflow/lockfile/configuration checks passed, but hosted CI status is pending until a push or pull request runs it.
 
-Implemented:
+## Immediate next steps
 
-- SQLAlchemy database foundation
-- SQLite initial database
-- UUID/timestamp mixins
-- `Document` model
-- `Chunk` model
-- `Conversation` model
-- `Message` model
-- `QueryLog` model
-- relationships, cascading behavior, and relevant constraints
-- database initialization script
-- database tests
+1. Review `git status` and the complete diff; the latest report says M11, chat rate limiting and documentation changes are uncommitted and not pushed. Keep them in one reviewed commit unless the diff reveals a clear reason to split them.
+2. Commit and push the reviewed changes when ready; do not claim hosted CI passed until GitHub Actions actually runs.
+3. Begin **M12 — Portfolio polish** after the M11 commit is recorded.
 
-Verification: database and health tests passed; the milestone was committed. Runtime SQLite database files remain ignored by Git.
+## Milestone 12 — Portfolio polish checklist
 
-### Milestone 3 — Document ingestion — COMPLETED
-
-Implemented:
-
-- PDF parsing with PyMuPDF
-- page-by-page extraction
-- text cleaning
-- hyphenated line handling
-- whitespace/paragraph normalization
-- deterministic character-based chunking
-- configurable chunk size and overlap
-- page-bounded chunks
-- page and optional section metadata
-- document status transitions and failure handling
-- persistence of documents and chunks
-
-Verification: 32 tests passed at milestone completion; the milestone was committed.
-
-### Milestone 4 — Embeddings + Qdrant — COMPLETED
-
-Implemented:
-
-- OpenAI `text-embedding-3-small` embedding service
-- batched embedding requests and order preservation
-- Qdrant vector-store abstraction
-- cosine similarity collection configuration
-- collection/vector-size validation
-- UUID chunk IDs mapped directly to Qdrant point IDs
-- citation payload fields stored with vectors
-- indexing service
-- retrieval service
-- configurable Top-K and optional score threshold
-- Qdrant connectivity helper
-- local Qdrant Docker startup script and documentation
-- fake/in-memory test infrastructure
-
-Verification:
-
-- 48 automated tests pass
-- real Qdrant `v1.19.2` container successfully runs under Colima
-- real application VectorStore successfully connected to Qdrant
-- real collection creation, vector upsert, semantic search, payload retrieval, and score-threshold behavior verified
-- temporary smoke-test collection was cleaned up
-- no real OpenAI API call was made during milestone verification
-- Qdrant compatibility warning was identified as belonging to the intentionally unreachable test and addressed only in that test with `check_compatibility=False`
-- remaining third-party deprecation warnings were left unchanged
-- Qdrant's Colima/virtiofs filesystem warning was reviewed and retained as a known development-environment limitation; no architecture change was made
-
-Commit:
-
-```text
-19f7f43 feat: add embeddings and Qdrant vector layer
-```
-
-The Git working tree is clean and the commit is present on `origin/main`.
-
-## Current Development Environment
-
-The verified local Docker setup is:
-
-- Docker CLI 29.2.1
-- Colima as the working Docker runtime
-- Docker context `colima`
-- macOS Virtualization.Framework
-- x86_64 architecture
-- virtiofs mount type
-- Docker Desktop not used
-- Lima not used as the active runtime
-
-Qdrant is intentionally a separate Docker container during development. The Python application is not yet containerized.
-
-## Not Yet Implemented
-
-- RAG engine / answer generation
-- OpenAI GPT-5.4 mini answer generation
-- real end-to-end OpenAI embedding/API integration
-- chat API
-- conversation API/UX beyond the database foundation
-- React application
-- Bootstrap UI
-- authentication
-- chat UI and streaming
-- admin panel
-- retrieval playground UI
-- evaluation system
-- application Dockerization / final Docker Compose topology
-- CI
-- deployment
-- final portfolio README/content polish
-- screenshots and final demo assets
-
-## Intentionally Deferred
-
-The following remain open and should not be silently finalized:
-
-- exact supported document formats beyond PDF
-- final chunk size and overlap values
-- final retrieval Top-K
-- final similarity threshold
-- exact authentication implementation
-- exact streaming mechanism
-- production relational database
-- application Docker Compose topology
-- hosting/deployment provider
-- evaluation methodology
-- exact React architecture/visual design
-- API route naming
-- final admin metrics
+- finalize accurate README and setup/deployment instructions
+- add an architecture diagram and screenshots
+- prepare a small, coherent fictional demo corpus
+- document the RAG pipeline, citations, evaluation method/results, and known limitations
+- run the documented clean-install workflow
+- verify no secrets, real `.env` files, SQLite databases, Qdrant storage, or generated evaluation artifacts are accidentally committed
+- confirm GitHub repository status and prepare a concise portfolio/interview explanation
 
 # 48. Future Change-Control Procedure
 
@@ -1768,7 +1659,7 @@ The finished application should be:
 
 # 50. Canonical Status
 
-This document represents the **latest approved project plan as of 2026-10-11**. Milestones 0–4 have been implemented and reviewed; the next planned milestone is Milestone 5 — RAG engine.
+This document represents the canonical project plan updated on **2026-10-16** using the restored original plan and the latest implementation reports available in the project conversation. Milestones 0–10 are completed and pushed. Milestone 11 implementation and isolated full Compose verification are reported complete locally; the combined M11 changes still need review, commit and push. Hosted GitHub Actions verification remains pending until a push or pull request triggers the workflow. Milestone 12 — Portfolio polish follows the M11 commit.
 
 Future implementation work should remain aligned with this document unless the user explicitly approves a change.
 

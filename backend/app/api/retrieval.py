@@ -4,6 +4,7 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field, field_validator
 
+from app.api.chat import MAX_QUESTION_CHARS
 from app.api.deps import get_embedder, get_vector_store, require_admin
 from app.services.embeddings import EmbeddingError, EmbeddingService
 from app.services.retrieval import retrieve
@@ -16,7 +17,7 @@ router = APIRouter(prefix="/retrieval", tags=["retrieval"], dependencies=[Depend
 
 
 class SearchRequest(BaseModel):
-    question: str
+    question: str = Field(max_length=MAX_QUESTION_CHARS)
     top_k: int | None = Field(default=None, ge=1, le=20)  # None -> configured default
 
     @field_validator("question")

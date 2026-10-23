@@ -34,8 +34,10 @@ def test_empty_text_rejected():
 
 
 def test_api_failure_wrapped():
-    with pytest.raises(EmbeddingError, match="boom"):
+    # Only the exception type is kept: provider messages can echo credentials.
+    with pytest.raises(EmbeddingError, match="OpenAIError") as exc_info:
         EmbeddingService(client=FakeOpenAI(fail=True)).embed_text("hi")
+    assert "boom" not in str(exc_info.value)
 
 
 def test_missing_api_key(monkeypatch):

@@ -3,7 +3,7 @@ import logging
 import openai
 from openai import OpenAI
 
-from app.core.config import get_settings
+from app.core.config import get_settings, reveal
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ class GenerationService:
         settings = get_settings()
         self.model = model or settings.openai_chat_model
         self._client = client
-        self._api_key = settings.openai_api_key
+        self._api_key = reveal(settings.openai_api_key)
 
     def _get_client(self) -> OpenAI:
         if self._client is None:

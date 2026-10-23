@@ -1,6 +1,6 @@
 # Architecture
 
-High-level architecture of the Company Knowledge Assistant. Source: `MASTER_PLAN.md` Sections 9–15, 30–32. This is a **conceptual** architecture; exact deployment topology and service boundaries are not finalized.
+High-level architecture of the Company Knowledge Assistant. Source: `MASTER_PLAN.md` Sections 9–15, 30–32. It describes the implemented system (Milestones 0–11; Milestone 11 is pending final verification); hosting and production database choices remain open.
 
 ## Overview
 
@@ -34,34 +34,35 @@ High-level architecture of the Company Knowledge Assistant. Source: `MASTER_PLAN
 
 ## Components
 
-- **React frontend** — Bootstrap UI with React Router and Axios. Initial pages: Login, Dashboard, AI Assistant/Chat, Documents. Later: Retrieval Playground, Evaluation, Settings, Conversations.
-- **FastAPI backend** — REST API with automatic OpenAPI/Swagger docs. Chat, document, and admin routes.
+- **React frontend** — React 19 + Vite, Bootstrap, React Router and Axios. Public pages: Home, Chat (conversation list kept in browser `localStorage`). Admin pages behind login: Dashboard, Documents (upload, delete, re-index), Retrieval Playground, Evaluation. Settings and a server-side conversations view are not built.
+- **FastAPI backend** — REST API with automatic OpenAPI/Swagger docs. Routes under `/api`: `health`, `chat`, `auth/login` (public) and `documents`, `documents/upload`, `documents/{id}` (DELETE), `documents/{id}/reindex`, `retrieval/search`, `admin/stats`, `admin/evaluation/runs[/{id}]` (admin JWT). Cross-cutting: request-ID/access-log middleware, consistent error bodies, config validation, login throttling.
 - **RAG engine** — ingestion, chunking, embedding, retrieval, prompt assembly, generation. See [rag-pipeline.md](rag-pipeline.md).
-- **Relational database** — SQLite initially (SQLAlchemy) for documents, chunks, conversations, messages, and query logs.
+- **Relational database** — SQLite (SQLAlchemy, UUID keys) for documents, chunks, conversations and messages. A `query_logs` table exists but nothing writes to it yet.
 - **Qdrant** — stores embedded document chunks and serves semantic search.
-- **OpenAI API** — LLM (and possibly embeddings; not yet decided). Configured via environment, never hard-coded; keys are not committed.
+- **OpenAI API** — `text-embedding-3-small` embeddings and `gpt-5.4-mini` generation. Configured via environment, never hard-coded; keys are not committed.
+- **Deployment** — `docker-compose.yml` runs three services: `qdrant`, `backend` and `frontend` (nginx serving the build and proxying `/api`, so the browser uses a single origin). See [deployment.md](deployment.md).
 
-## Proposed backend layout (not immutable)
+## Backend layout
 
 ```text
 backend/
 ├── app/
 │   ├── main.py
-│   ├── api/        # chat, documents, retrieval, admin
-│   ├── core/       # config, logging
-│   ├── models/
-│   ├── services/   # ingestion, chunking, embeddings, retrieval, generation
+│   ├── api/        # health, chat, auth, admin, documents, retrieval, evaluation, deps
+│   ├── core/       # config, database, security, logging, middleware, errors, ratelimit
+│   ├── models/     # Document, Chunk, Conversation, Message, QueryLog
+│   ├── services/   # ingestion, chunking, embeddings, indexing, vector_store, retrieval, generation
 │   └── rag/        # pipeline, prompts, evaluation
+├── scripts/        # init_db, hash_password, check_qdrant, run_evaluation
 ├── tests/
-├── scripts/
 └── pyproject.toml
 ```
 
-## Confirmed vs. open
+## Decisions
 
-**Confirmed:** Python + FastAPI, React + Bootstrap, Qdrant, OpenAI APIs, SQLite initially, PyMuPDF for PDFs, uv, Docker later.
+**Confirmed:** Python + FastAPI, React + Bootstrap, Qdrant (separate container), OpenAI APIs, SQLite, PyMuPDF (PDF only), uv, single-admin JWT auth, Docker Compose with an nginx same-origin proxy, Colima for local Docker.
 
-**Open:** OpenAI model, embedding model, extra document formats, Qdrant deployment mode (local / Docker / Cloud), production database, authentication details (JWT proposed), streaming mechanism, Docker Compose topology, hosting provider, API route naming, SQLAlchemy schema.
+**Still open:** formats beyond PDF, chunking and retrieval parameters (defaults 1000/150/Top-K 5, no threshold), streaming, production database, hosting and TLS, visual design, branding.
 
 ## Out of scope for V1
 

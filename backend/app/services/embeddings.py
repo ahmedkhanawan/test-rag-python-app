@@ -4,7 +4,7 @@ from collections.abc import Sequence
 import openai
 from openai import OpenAI
 
-from app.core.config import get_settings
+from app.core.config import get_settings, reveal
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +26,7 @@ class EmbeddingService:
         self.model = model or settings.openai_embedding_model
         self.batch_size = batch_size
         self._client = client
-        self._api_key = settings.openai_api_key
+        self._api_key = reveal(settings.openai_api_key)
 
     def _get_client(self) -> OpenAI:
         if self._client is None:
@@ -48,8 +48,11 @@ class EmbeddingService:
             try:
                 response = client.embeddings.create(model=self.model, input=batch)
             except openai.OpenAIError as exc:
-                logger.error("OpenAI embedding request failed: %s", exc)
-                raise EmbeddingError(f"OpenAI embedding request failed: {exc}") from exc
+                # Provider messages can echo credentials; keep only the exception type.
+                logger.error("OpenAI embedding request failed: %s", type(exc).__name__)
+                raise EmbeddingError(
+                    f"OpenAI embedding request failed ({type(exc).__name__})"
+                ) from exc
             data = sorted(response.data, key=lambda d: d.index)
             if len(data) != len(batch):
                 raise EmbeddingError("OpenAI returned an unexpected number of embeddings")

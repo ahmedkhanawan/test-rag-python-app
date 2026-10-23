@@ -1,6 +1,6 @@
 # Local Qdrant
 
-Qdrant runs as a separate Docker container for local development. The Python app is not containerized yet.
+Qdrant always runs as a separate container. This page covers the standalone development container; `docker-compose.yml` runs the same image as a service next to the containerized app (see [deployment.md](deployment.md)). Both use `./qdrant_storage`, so run only one at a time.
 
 ```bash
 ./scripts/start-qdrant.sh                 # start (data persists in ./qdrant_storage)

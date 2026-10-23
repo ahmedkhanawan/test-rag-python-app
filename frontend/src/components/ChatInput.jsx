@@ -10,6 +10,7 @@ export default function ChatInput({ value, onChange, onSubmit, disabled, sending
         className="form-control"
         placeholder="Ask a question about company documents…"
         aria-label="Question"
+        maxLength={4000}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || sending}

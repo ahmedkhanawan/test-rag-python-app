@@ -39,6 +39,7 @@ export default function RetrievalPlaygroundPage() {
           <label htmlFor="rp-question" className="form-label">Question</label>
           <input
             id="rp-question"
+            maxLength={4000}
             className="form-control"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}

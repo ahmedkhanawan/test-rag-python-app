@@ -1,4 +1,5 @@
 import logging
+import re
 import shutil
 import tempfile
 import uuid
@@ -25,6 +26,20 @@ logger = logging.getLogger(__name__)
 router = APIRouter(tags=["documents"], dependencies=[Depends(require_admin)])
 
 _READ_BLOCK = 1024 * 1024
+_CONTROL_CHARS = re.compile(r"[\x00-\x1f\x7f]")
+
+
+def _clean_text(value: str, limit: int) -> str:
+    return _CONTROL_CHARS.sub("", value).strip()[:limit]
+
+
+def _safe_filename(raw: str | None) -> str:
+    """Client-supplied file name reduced to a plain, bounded, printable `*.pdf` name."""
+    name = _clean_text(Path((raw or "").replace("\\", "/")).name, 10_000)
+    if not name.lower().endswith(".pdf"):
+        return ""  # caller rejects it
+    stem = name[:-4].strip(". ")
+    return f"{stem[:251]}.pdf" if stem else "document.pdf"
 
 
 def _out(db: Session, document_id: uuid.UUID) -> DocumentOut:
@@ -98,8 +113,8 @@ def _index(
 
 def _save_upload(upload: UploadFile, directory: Path) -> Path:
     """Stream the upload to disk, enforcing the configured size limit."""
-    filename = Path(upload.filename or "").name
-    if not filename.lower().endswith(".pdf"):
+    filename = _safe_filename(upload.filename)
+    if not filename:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Only .pdf files are supported")
     limit = get_settings().max_upload_mb * 1024 * 1024
     target = directory / filename
@@ -130,7 +145,7 @@ def upload_document(
     try:
         path = _save_upload(file, tmp_dir)
         try:
-            document = ingest_pdf(db, path, name=(name or "").strip() or None)
+            document = ingest_pdf(db, path, name=_clean_text(name or "", 255) or None)
         except InvalidPDFError:
             raise HTTPException(
                 status.HTTP_422_UNPROCESSABLE_CONTENT, "The file is not a valid PDF"
